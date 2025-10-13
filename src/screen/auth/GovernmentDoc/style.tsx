@@ -7,8 +7,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
+     backgroundColor: '#fff',
   },
   backButton: {
     marginTop: 8,
@@ -46,8 +45,7 @@ export const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: "#EAF8F1",
     borderRadius: 16,
-     paddingHorizontal: 16,
-    alignItems: "center",
+     alignItems: "center",
     justifyContent: "center",
     marginHorizontal: 5,
     marginTop: 30,

@@ -39,9 +39,14 @@ export default function Success() {
       <SafeAreaView style={styles.container}>
         <StatusBarComponent />
         {isLoading && <Loading />}
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} 
+        
+        
+        >
                      <CustomHeader label="Back" />
-
+<View style={{
+  marginHorizontal:15
+}}>
           <View style={styles.headerContainer}>
             <Text  allowFontScaling={false}   style={styles.title}>Verification Submitted</Text>
             <Text  allowFontScaling={false}   style={styles.description}>Our team will review your information shortly. You’ll be notified once verified.</Text>
@@ -57,9 +62,15 @@ resizeMode:"contain"
 
 }} />
  </View>
+ </View>
         </ScrollView>
+        <View style={{
+            marginHorizontal:15
+
+        }}>
 
         <CustomButton title={"Go to Home"} onPress={handleSetPassword} />
+      </View>
       </SafeAreaView>
    );
 }

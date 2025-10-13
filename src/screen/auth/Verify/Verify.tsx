@@ -41,7 +41,9 @@ export default function Verify() {
         {isLoading && <Loading />}
         <ScrollView showsVerticalScrollIndicator={false}>
                      <CustomHeader label="Back" />
-
+<View style={{
+  marginHorizontal:15
+}}>
           <View style={styles.headerContainer}>
             <Text  allowFontScaling={false}   style={styles.title}>Verify your identity</Text>
             <Text  allowFontScaling={false}   style={styles.description}>To comply with AUSTRAC & AFS regulations, we require ID verification.</Text>
@@ -57,9 +59,13 @@ resizeMode:"contain"
 
 }} />
  </View>
+ </View>
         </ScrollView>
-
+<View style={{
+  marginHorizontal:15
+}}>
         <CustomButton title={"Start Verification"} onPress={handleSetPassword} />
+    </View>
       </SafeAreaView>
    );
 }

@@ -50,7 +50,9 @@ export default function PersonalInfo() {
                      <CustomHeader label="Personal Info" />
 
                 <StepProgressBar step={1} totalSteps={5} />
-
+<View style={{
+  marginHorizontal:15
+}}>
 
           <View style={styles.formContainer}>
             <CustomInput
@@ -77,9 +79,13 @@ export default function PersonalInfo() {
              />
               
            </View>
+           </View>
         </ScrollView>
-
+<View style={{
+  marginHorizontal:15
+}}>
         <CustomButton title={"Next"} onPress={handleSetPassword} />
+      </View>
       </SafeAreaView>
    );
 }

@@ -54,9 +54,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       >
         <View style={[styles.content, { justifyContent: alignment[alignItm] }]}>
           {leftIcon && <View style={styles.icon}>{leftIcon}</View>}
-          <Text allowFontScaling={false} style={[styles.text, { color: "white" }, textStyle]}>
-            {title}
-          </Text>
+         <View style={[styles.content, { justifyContent: alignment[alignItm] }]}>
+  {leftIcon && <View style={styles.icon}>{leftIcon}</View>}
+  <Text allowFontScaling={false} style={[styles.text, { color: "white" }, textStyle]}>
+    {title}
+  </Text>
+</View>
+
         </View>
       </LinearGradient>
     </TouchableOpacity>
@@ -68,14 +72,15 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   gradient: {
-    paddingHorizontal: 20,
-    justifyContent: 'center',
+     justifyContent: 'center',
     alignItems: 'center',
   },
   content: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center', // center horizontally
+  width: '100%',
+  position: 'relative', // allow absolute positioning if needed
   },
   icon: {
     marginRight: 10,
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 16,
-    fontWeight:"800"
+    fontWeight:"800" ,textAlign:"center"
    },
 });
 

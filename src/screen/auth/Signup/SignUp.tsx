@@ -92,6 +92,20 @@ export default function Signup() {
                   onChangeText={handleEmailChange}
                 />
                 {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
+
+  <CustomInput
+                  placeholder={"Phone Number"}
+      leftIcon={<Image source={imageIndex.Phone1}  style={{
+                    height:20,
+                    width:20,
+                    tintColor:"gray"
+                   }}
+                
+                   resizeMode='contain'
+                   />}                  value={email}
+                  keyboardType='decimal-pad'
+
+                 />
 <CustomDropdown
   data={[
      { label: "Current Account", value: "current" },
@@ -120,7 +134,17 @@ export default function Signup() {
                 />
 
 
-               
+                 <CustomInput
+
+                  placeholder={"Confirm Password"}
+                  secureTextEntryToggle
+      leftIcon={<Image source={imageIndex.lock}  style={{
+                    height:20,
+                    width:20,
+                   }}
+                   resizeMode='contain'
+                   />}                  
+                />
  
 
 

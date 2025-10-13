@@ -140,11 +140,11 @@ style={{
       />
       
   <View style={{
-    width: "40%",
-    alignItems:"center",
+     alignItems:"center",
     justifyContent:"center",
      alignSelf:"center",
-     marginBottom:20
+     marginBottom:20 ,
+     marginHorizontal:80
   }}>
             <CustomButton title={"Continue"} onPress={handleNextPress} />
   

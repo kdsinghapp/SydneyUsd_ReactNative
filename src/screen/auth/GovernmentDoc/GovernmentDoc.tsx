@@ -28,8 +28,11 @@ const Nav = useNavigation()
         <StatusBarComponent />
          <ScrollView showsVerticalScrollIndicator={false}>
                      <CustomHeader label="Back" />
-
-                <StepProgressBar step={2} totalSteps={4} />
+                         <StepProgressBar step={2} totalSteps={4} />
+<View style={{
+  marginHorizontal:15
+}}>
+            
 
 
           <View style={styles.cardContainer}>
@@ -45,11 +48,17 @@ Take a driver's license, national identity card or passport photo
           resizeMode="contain"
         />
      </View>
+     </View>
         </ScrollView>
+<View style ={{
+  marginHorizontal:15
+}}>
+
 
         <CustomButton title={"Verify my identity"} onPress={()=>{
 Nav.navigate(ScreenNameEnum.FaceRecognition)
         }} />
+        </View>
       </SafeAreaView>
    );
 }
