@@ -10,6 +10,7 @@ import 'react-native-reanimated';
 LogBox.ignoreAllLogs(); 
 (Text as any).defaultProps = (Text as any).defaultProps || {};
 
+
 (Text as any).defaultProps.allowFontScaling = false;
  
 (TextInput as any).defaultProps = (TextInput as any).defaultProps || {};
