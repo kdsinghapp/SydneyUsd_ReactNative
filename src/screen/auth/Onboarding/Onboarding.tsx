@@ -143,7 +143,7 @@ style={{
      alignItems:"center",
     justifyContent:"center",
      alignSelf:"center",
-     marginBottom:20 ,
+     marginBottom:50 ,
      marginHorizontal:80
   }}>
             <CustomButton title={"Continue"} onPress={handleNextPress} />

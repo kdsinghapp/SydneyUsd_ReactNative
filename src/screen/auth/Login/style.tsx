@@ -137,7 +137,7 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     alignSelf: 'center',
     width: wp(100),
-    marginBottom:15,
+    marginBottom:30,
     justifyContent: 'center',
   },
   signUpPrompt: {

@@ -21,9 +21,7 @@ import GovernmentDoc from "../screen/auth/GovernmentDoc/GovernmentDoc";
  import FaceNewPassword from "../screen/auth/FaceNewPassword/FaceNewPassword";
 import Success from "../screen/auth/Success/Success";
 import Signup from "../screen/auth/Signup/SignUp";
-import Buy from "../screen/BottomTab/DashBoard/Buy";
-import BuyNow from "../screen/BottomTab/DashBoard/BuyNow";
-import SwapScreen from "../screen/BottomTab/Swap/Swap";
+ 
 import SawapSen from "../screen/BottomTab/SwapSend/SawapSen";
 import Sendcoin from "../screen/BottomTab/Sendcoin/Sendcoin";
 import SendMoney from "../screen/BottomTab/SendMoney/SendMoney";
@@ -31,6 +29,9 @@ import CurrencySelector from "../screen/Profile/CurrencySelector";
 import NotificationsSetting from "../screen/Profile/NotificationsSetting/NotificationsSetting";
 import HelpSupport from "../screen/Profile/HelpSupport/HelpSupport";
 import FaceRecognition from "../screen/auth/FaceRecognition/FaceRecognition ";
+import BuyNow from "../screen/BottomTab/Dashboard/BuyNow";
+import Buy from "../screen/BottomTab/Dashboard/Buy";
+import SwapScreen from "../screen/BottomTab/swap/Swap";
 
 
  const _routes: any = {
