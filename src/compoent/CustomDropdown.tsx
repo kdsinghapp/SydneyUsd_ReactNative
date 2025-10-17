@@ -43,14 +43,16 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
 
   return (
     <View style={styles.container}>
+      
       <TouchableOpacity
-        style={[styles.dropdown, leftIcon && { paddingLeft: 40 }]}
+        style={[styles.dropdown]}
         onPress={() => setVisible(true)}
       >
         <View style={{
           flexDirection:"row",
           alignItems:"center"
         }}>
+          {leftIcon &&
                   <Image source={imageIndex.userLogo} 
                   style={{
                     height:22,
@@ -58,6 +60,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
                     resizeMode:"contain"
                   }}
                   />
+                  }
 
         <Text
           style={[

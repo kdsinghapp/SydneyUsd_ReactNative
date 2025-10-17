@@ -21,7 +21,7 @@ import { color } from '../../../constant';
 import useSignup from './useSignup';
 import { styles } from './style';
 import { SafeAreaView } from 'react-native-safe-area-context';
- 
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomDropdown from '../../../compoent/CustomDropdown';
 import CustomHeader from '../../../compoent/CustomHeader';
@@ -70,86 +70,87 @@ export default function Signup() {
         style={{ flex: 1 }}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
       >
-                      <CustomHeader label="Back" />
-         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <CustomHeader label="Back" />
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ScrollView showsVerticalScrollIndicator={false}>
 
             <View style={styles.mainContainer}>
-          <Image source={imageIndex.Logo1} style={styles.logo} resizeMode='contain' />
+              <Image source={imageIndex.Logo1} style={styles.logo} resizeMode='contain' />
               <Text allowFontScaling={false} style={styles.txtHeading}>Sign Up</Text>
               <Text allowFontScaling={false} style={styles.txtDes}>Let's get started by creating your account</Text>
               <View style={styles.inputContainer}>
                 <CustomInput
                   placeholder={"Email Address"}
-      leftIcon={<Image source={imageIndex.Email}  style={{
-                    height:20,
-                    width:20,
-                   }}
-                   resizeMode='contain'
-                   />}                  value={email}
+                  leftIcon={<Image source={imageIndex.Email} style={{
+                    height: 20,
+                    width: 20,
+                  }}
+                    resizeMode='contain'
+                  />} value={email}
                   keyboardType='email-address'
 
                   onChangeText={handleEmailChange}
                 />
                 {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
 
-  <CustomInput
+                <CustomInput
                   placeholder={"Phone Number"}
-      leftIcon={<Image source={imageIndex.Phone1}  style={{
-                    height:20,
-                    width:20,
-                    tintColor:"gray"
-                   }}
-                
-                   resizeMode='contain'
-                   />}                  value={email}
+                  leftIcon={<Image source={imageIndex.Phone1} style={{
+                    height: 20,
+                    width: 20,
+                    tintColor: "gray"
+                  }}
+
+                    resizeMode='contain'
+                  />} value={email}
                   keyboardType='decimal-pad'
 
-                 />
-<CustomDropdown
-  data={[
-     { label: "Current Account", value: "current" },
-    { label: "Salary Account", value: "salary" },
-    { label: "Fixed Deposit Account", value: "fixed_deposit" },
-    { label: "Recurring Deposit Account", value: "recurring_deposit" },
-    { label: "NRI Account", value: "nri" },
-   ]}
-  placeholder="Select Account Type"
-  onSelect={(value) => console.log("Selected Account Type:", value)}
-  search={true}
-/>
+                />
+                <CustomDropdown
+                  data={[
+                    { label: "Current Account", value: "current" },
+                    { label: "Salary Account", value: "salary" },
+                    { label: "Fixed Deposit Account", value: "fixed_deposit" },
+                    { label: "Recurring Deposit Account", value: "recurring_deposit" },
+                    { label: "NRI Account", value: "nri" },
+                  ]}
+                  placeholder="Select Account Type"
+                  onSelect={(value) => console.log("Selected Account Type:", value)}
+                  leftIcon={true}
+                  search={true}
+                />
 
 
                 <CustomInput
 
                   placeholder={"Password"}
                   secureTextEntryToggle
-      leftIcon={<Image source={imageIndex.lock}  style={{
-                    height:20,
-                    width:20,
-                   }}
-                   resizeMode='contain'
-                   />}                  value={password}
+                  leftIcon={<Image source={imageIndex.lock} style={{
+                    height: 20,
+                    width: 20,
+                  }}
+                    resizeMode='contain'
+                  />} value={password}
                   onChangeText={handlePasswordChange}
                 />
 
 
-                 <CustomInput
+                <CustomInput
 
                   placeholder={"Confirm Password"}
                   secureTextEntryToggle
-      leftIcon={<Image source={imageIndex.lock}  style={{
-                    height:20,
-                    width:20,
-                   }}
-                   resizeMode='contain'
-                   />}                  
+                  leftIcon={<Image source={imageIndex.lock} style={{
+                    height: 20,
+                    width: 20,
+                  }}
+                    resizeMode='contain'
+                  />}
                 />
- 
 
 
-               
- 
+
+
+
               </View>
 
 
@@ -163,7 +164,7 @@ export default function Signup() {
               <CustomButton
                 title={"Sign Up"}
                 // onPress={handleSignup}
-              onPress={() => navigation.navigate(ScreenNameEnum.Verify)}
+                onPress={() => navigation.navigate(ScreenNameEnum.Verify)}
               />
 
               <TouchableOpacity style={{ alignItems: 'center', marginTop: 15 }} onPress={() => navigation.navigate(ScreenNameEnum.Login)}>
@@ -171,7 +172,7 @@ export default function Signup() {
               </TouchableOpacity>
 
             </View>
-            
+
           </ScrollView>
 
         </TouchableWithoutFeedback>

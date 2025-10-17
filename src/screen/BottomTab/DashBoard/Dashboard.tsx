@@ -1,51 +1,91 @@
 // WalletScreen.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
 import imageIndex from '../../../assets/imageIndex';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import StatusBarComponent from '../../../compoent/StatusBarCompoent';
 import ScreenNameEnum from '../../../routes/screenName.enum';
 import { useNavigation } from '@react-navigation/native';
- 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useSelector } from 'react-redux';
+import { Fetch_CointAPI } from '../../../Api/apiRequest';
+
 
 const Dashboard = () => {
   const actions = [
-    { id: '1',  label: 'Send', screen:ScreenNameEnum.SendMoney, icon:imageIndex.Polygon},
-    { id: '2', label: 'Received',screen:ScreenNameEnum.Buy, icon: imageIndex.Received },
-    { id: '3' , screen:ScreenNameEnum.Buy, label: 'Buy', icon: imageIndex.Buy },
-    { id: '4', label: 'Sell',screen:ScreenNameEnum.Buy, icon: imageIndex.Sell },
-    { id: '5', screen:ScreenNameEnum.SwapScreen,  label: 'Swap', icon: imageIndex.Swap },
+    { id: '1', label: 'Send', screen: ScreenNameEnum.SendMoney, icon: imageIndex.Polygon },
+    { id: '2', label: 'Received', screen: ScreenNameEnum.Buy, icon: imageIndex.Received },
+    { id: '3', screen: ScreenNameEnum.Buy, label: 'Buy', icon: imageIndex.Buy },
+    { id: '4', label: 'Sell', screen: ScreenNameEnum.Buy, icon: imageIndex.Sell },
+    { id: '5', screen: ScreenNameEnum.SwapScreen, label: 'Swap', icon: imageIndex.Swap },
   ];
 
   const tokens = [
     { id: '1', name: 'BTC', sub: 'Bitcoin', price: '$ 23.00', change: '-1.14%', color: '#F7931A', icon: imageIndex.Btc },
-    { id: '2', name: 'MATIC', sub: 'Polygon', price: '$ 05,910', change: '-1.14%', color: '#8247E5', icon: imageIndex.Matici},
-    { id: '3', name: 'ETH', sub: 'Ethereum', price: '$ 23.00', change: '-1.14%', color: '#627EEA', icon: imageIndex.Ethereum},
+    { id: '2', name: 'MATIC', sub: 'Polygon', price: '$ 05,910', change: '-1.14%', color: '#8247E5', icon: imageIndex.Matici },
+    { id: '3', name: 'ETH', sub: 'Ethereum', price: '$ 23.00', change: '-1.14%', color: '#627EEA', icon: imageIndex.Ethereum },
     { id: '4', name: 'BNB', sub: 'BNB', price: '$ 23.00', change: '-1.14%', color: '#F0B90B', icon: imageIndex.Bnb },
   ];
   const navgation = useNavigation()
+ const [coins, setCoins] = useState([]);
+  const [wallet, setWallet] = useState()
+  const [balance, setBalance] = useState(0)
+  const isLogin = useSelector((state: any) => state?.auth);
+  console.log(isLogin)
+  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    fetchCoins();
+  }, []);
 
+  const fetchCoins = async () => {
+    // AsyncStorage.removeItem('wallet')
+    const data = await Fetch_CointAPI(setLoading)
+    // const ww = await AsyncStorage.getItem('wallet')
+    // const nn = await ww != null ? JSON.parse(ww) : null;
+    // console.log(nn)
+    // setWallet(nn)
+
+    // if (nn) {
+    //   setConnected(true)
+    //   const bb = await getWalletBalance()
+    //   console.log(bb)
+    // }
+    setCoins(data)
+  };
   const renderAction = ({ item }: any) => (
-    <TouchableOpacity style={styles.actionItem} 
-    onPress={()=>{
-      navgation.navigate(item.screen,{
-        item:item
-      })
-    }}
+    <TouchableOpacity style={styles.actionItem}
+      onPress={() => {
+        navgation.navigate(item.screen, {
+          item: item
+        })
+      }}
     >
       <View style={styles.actionCircle}>
-                  <Image source={item.icon} style={{ width: 55, height: 55 }} resizeMode="contain" />
+        <Image source={item.icon} style={{ width: 55, height: 55 }} resizeMode="contain" />
 
-       </View>
+      </View>
       <Text style={styles.actionText}>{item.label}</Text>
     </TouchableOpacity>
   );
-
+  //  const renderToken = ({ item }: any) => (
+  //     <TouchableOpacity style={styles.tokenRow} onPress={() => navigation.navigate(ScreenNameEnum.cointDetail, { id: item?.id })}>
+  //       <Image source={{ uri: item.image.thumb || item.image }} style={styles.tokenIcon} />
+  //       <View style={styles.tokenInfo}>
+  //         {/* <Text style={styles.tokenName}>{item.name}</Text> */}
+  //         <Text style={styles.tokenName}>{item?.symbol}</Text>
+  //         <Text style={styles.tokenFullname}>{item.name}</Text>
+  //       </View>
+  //       <View style={styles.tokenPriceSection}>
+  //         <Text style={styles.tokenPrice}>${parseFloat(item.current_price)}</Text>
+  //         <Text style={[styles.tokenChange, { color: item.price_change_percentage_24h >= 0 ? "green" : "red" },]}>{parseFloat(item.price_change_percentage_24h).toFixed(2)}%</Text>
+  //       </View>
+  //     </TouchableOpacity>
+  //   );
   const renderToken = ({ item }: any) => (
     <View style={styles.tokenRow}>
       <View style={styles.tokenLeft}>
         <View style={[styles.tokenIcon, { backgroundColor: item.color + '40' }]}>
-          <Image source={item.icon} style={{ width: 44, height: 44 }} resizeMode="contain" />
+          <Image source={{uri: item.image}} style={{ width: 44, height: 44 }} resizeMode="contain" />
         </View>
         <View>
           <Text style={styles.tokenName}>{item.name}</Text>
@@ -53,16 +93,16 @@ const Dashboard = () => {
         </View>
       </View>
       <View style={styles.tokenRight}>
-        <Text style={styles.tokenPrice}>{item.price}</Text>
-        <Text style={styles.tokenChange}>{item.change}</Text>
+        <Text style={styles.tokenPrice}>${item.current_price}</Text>
+        <Text style={[styles.tokenChange,{ color: item.price_change_percentage_24h >= 0 ? "green" : "red" }]}>{parseFloat(item.price_change_percentage_24h).toFixed(2)}%</Text>
       </View>
     </View>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBarComponent/>
-       <View style={styles.header}>
+      <StatusBarComponent />
+      <View style={styles.header}>
         <View style={styles.userInfo}>
           <Image source={{ uri: 'https://i.pravatar.cc/150?img=3' }} style={styles.avatar} />
           <View>
@@ -72,19 +112,19 @@ const Dashboard = () => {
         </View>
         <View style={styles.headerIcons}>
           <Image source={imageIndex.Scanning} style={{
-            height:25,
-            width:25,
-            resizeMode:"cover",
-            right:15
-          }}/>
+            height: 25,
+            width: 25,
+            resizeMode: "cover",
+            right: 15
+          }} />
           {/* <Ionicons name="qr-code-outline" size={22} color="#00C389" style={{ marginRight: 12 }} /> */}
           <View style={styles.notification}>
- <Image source={imageIndex.Nofiication} style={{
-            height:38,
-            width:38,
-            resizeMode:"cover"
+            <Image source={imageIndex.Nofiication} style={{
+              height: 38,
+              width: 38,
+              resizeMode: "cover"
 
-          }}/>            {/* <View style={styles.badge} /> */}
+            }} />            {/* <View style={styles.badge} /> */}
           </View>
         </View>
       </View>
@@ -105,20 +145,20 @@ const Dashboard = () => {
           showsHorizontalScrollIndicator={false}
         />
       </View>
-<View style={{flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
-       <Text style={styles.sectionTitle}>Popular tokens</Text>
- <Image source={imageIndex.More} style={{
-  height:20,
-  width:20
- }}/>
-       </View>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+        <Text style={styles.sectionTitle}>Popular tokens</Text>
+        <Image source={imageIndex.More} style={{
+          height: 20,
+          width: 20
+        }} />
+      </View>
       <FlatList
-        data={tokens}
+        data={coins}
         showsVerticalScrollIndicator={false}
         renderItem={renderToken}
         keyExtractor={(item) => item.id}
         style={{
-          marginTop:11
+          marginTop: 11
         }}
         contentContainerStyle={{ paddingBottom: 100 }}
       />
@@ -157,8 +197,8 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 12,
     color: '#A0A0A0',
-    marginTop:3
-   },
+    marginTop: 3
+  },
   headerIcons: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -182,14 +222,14 @@ const styles = StyleSheet.create({
   balanceLabel: {
     fontSize: 14,
     color: '#9CA3AF',
-    marginTop:5
+    marginTop: 5
   },
   balanceAmount: {
     fontSize: 28,
     fontWeight: '700',
     color: '#000',
-    marginTop:8
-   },
+    marginTop: 8
+  },
   actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -202,14 +242,14 @@ const styles = StyleSheet.create({
   actionCircle: {
     width: 55,
     height: 60,
-      justifyContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
-   },
+  },
   actionText: {
     fontSize: 12,
     color: '#000',
     fontWeight: '600',
-    marginTop:15
+    marginTop: 15
   },
   sectionTitle: {
     fontSize: 16,
@@ -231,7 +271,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tokenIcon: {
- 
+
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',

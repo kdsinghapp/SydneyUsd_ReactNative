@@ -4,18 +4,18 @@ import { base_url } from './index';
 import ScreenNameEnum from '../routes/screenName.enum';
 import { loginSuccess, logout } from '../redux/feature/authSlice';
 import { errorToast, successToast } from '../utils/customToast';
- import AsyncStorage from '@react-native-async-storage/async-storage';
- import { Toast } from '../utils/Toast';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Toast } from '../utils/Toast';
 import { color } from '../constant';
- const handleLogout = async (dispatch: any) => {
+const handleLogout = async (dispatch: any) => {
   try {
-     dispatch(logout());    // reset Redux state
-   } catch (error) {
+    dispatch(logout());    // reset Redux state
+  } catch (error) {
     console.error('Error during logout:', error);
   }
 };
 
- const saveAuthData = async (userData:any, token:any) => {
+const saveAuthData = async (userData: any, token: any) => {
   try {
     await AsyncStorage.setItem('authData', JSON.stringify({ userData, token }));
     console.log('Auth data saved successfully');
@@ -23,7 +23,7 @@ import { color } from '../constant';
     console.error('Error saving auth data:', error);
   }
 };
- const getAuthData = async () => {
+const getAuthData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('authData');
     return jsonValue != null ? JSON.parse(jsonValue) : null;
@@ -108,7 +108,7 @@ const Verifyotp = async (param: any, setLoading: any, dispatch: any) => {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-       },
+      },
       body: formdata,
     });
 
@@ -124,15 +124,15 @@ const Verifyotp = async (param: any, setLoading: any, dispatch: any) => {
       successToast(parsedResponse?.message);
       await AsyncStorage.setItem('token', parsedResponse?.token);
       dispatch(loginSuccess({ userData: parsedResponse, token: parsedResponse?.token }));
-       await saveAuthData(parsedResponse, parsedResponse?.token);
+      await saveAuthData(parsedResponse, parsedResponse?.token);
       //  if(parsedResponse?.type === "Delivery"){
       //   param.navigation.navigate(ScreenNameEnum.DeliveryTabNavigator);
       //  }else{
       //   param.navigation.navigate(ScreenNameEnum.TabNavigator);
       //  }
-         param.navigation.navigate(ScreenNameEnum.ProfileSetup);
-     
-     } else {
+      param.navigation.navigate(ScreenNameEnum.ProfileSetup);
+
+    } else {
       errorToast(parsedResponse?.message);
     }
 
@@ -195,7 +195,7 @@ const Resend_otp = async (param: any, setLoading: any) => {
   }
 };
 
- const UpdateProfile = async (
+const UpdateProfile = async (
   param: any,
   setLoading: (loading: boolean) => void
 ) => {
@@ -260,8 +260,8 @@ const Resend_otp = async (param: any, setLoading: any) => {
   }
 };
 
-  
-    
+
+
 const GetProfileApi = async (
   setLoading: (loading: boolean) => void
 ): Promise<any | null> => {
@@ -295,8 +295,8 @@ const GetProfileApi = async (
   }
 };
 
- 
- const Privacypolicy = async (setLoading: any) => {
+
+const Privacypolicy = async (setLoading: any) => {
   setLoading(true);
   try {
     const response = await fetch(`${base_url}/privacy-policy`, {
@@ -330,7 +330,7 @@ const GetProfileApi = async (
 };
 
 
- const Termsconditions = async (setLoading: any) => {
+const Termsconditions = async (setLoading: any) => {
   setLoading(true);
   try {
     const response = await fetch(`${base_url}/terms-and-conditions`, {
@@ -364,7 +364,49 @@ const GetProfileApi = async (
 };
 
 
- const DeliveryUploadDocument = async (
+const Fetch_CointAPI = async (
+  setLoading: (loading: boolean) => void,
+) => {
+  try {
+    setLoading(true);
+
+    const myHeaders = new Headers();
+    myHeaders.append("x-cg-demo-api-key", "CG-K2sv8oGmXdaEGa7PmQ4nCzpt");
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+    };
+
+    // Fetch both GTAN token and top tokens in parallel
+    const tokensResponse =
+      await fetch(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1`,
+        requestOptions
+      )
+
+
+    const tokensData = await tokensResponse.json()
+
+
+    // setLoading(false);
+
+    // Some CoinGecko endpoints return single object vs. array → normalize
+    // const gtanItem = gtanData?.id ? gtanData : null;
+
+    // Final array with GTAN at the top
+    console.log(tokensData)
+    return tokensData;
+  } catch (error) {
+    setLoading(false);
+    console.error("Network error", error);
+    errorToast("Network error");
+    throw error;
+  }
+};
+
+
+const DeliveryUploadDocument = async (
   param: any,
   setLoading: (loading: boolean) => void
 ) => {
@@ -394,7 +436,7 @@ const GetProfileApi = async (
       formdata.append("vehiclePapers", {
         uri: param.vehiclePapers.uri,
         name: "profile.jpg",
-        type:"image/jpeg",
+        type: "image/jpeg",
       });
     }
 
@@ -420,7 +462,7 @@ const GetProfileApi = async (
     console.log("parsedResponse", parsedResponse);
     if (parsedResponse.status == "1") {
       successToast(parsedResponse.message);
-    }  
+    }
 
     return parsedResponse;
   } catch (error) {
@@ -433,7 +475,7 @@ const GetProfileApi = async (
 };
 
 
- const DeliveryVehicleDocument = async (
+const DeliveryVehicleDocument = async (
   param: any,
   setLoading: (loading: boolean) => void
 ) => {
@@ -459,7 +501,7 @@ const GetProfileApi = async (
       });
     }
 
-     console.log("FormData vehicleType:", formdata);
+    console.log("FormData vehicleType:", formdata);
 
     const headers = {
       Accept: "application/json",
@@ -532,19 +574,20 @@ const GetuploadDocument = async (
   }
 };
 
- export {
-  LogiApi,  
-   Verifyotp,
-handleLogout,
-getAuthData,
-Termsconditions,
-saveAuthData,
-Resend_otp,
-     GetProfileApi,  
- Privacypolicy,
-UpdateProfile ,
-DeliveryUploadDocument,
-DeliveryVehicleDocument,
-GetuploadDocument
+export {
+  LogiApi,
+  Verifyotp,
+  handleLogout,
+  getAuthData,
+  Termsconditions,
+  saveAuthData,
+  Resend_otp,
+  GetProfileApi,
+  Privacypolicy,
+  UpdateProfile,
+  DeliveryUploadDocument,
+  DeliveryVehicleDocument,
+  GetuploadDocument,
+  Fetch_CointAPI
 
 }  

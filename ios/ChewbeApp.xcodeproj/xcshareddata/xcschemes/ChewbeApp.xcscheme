@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ChewbeApp.app"
-               BlueprintName = "ChewbeApp"
-               ReferencedContainer = "container:ChewbeApp.xcodeproj">
+               BuildableName = "SydneyApp.app"
+               BlueprintName = "SydneyApp"
+               ReferencedContainer = "container:SydneyApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ChewbeAppTests.xctest"
-               BlueprintName = "ChewbeAppTests"
-               ReferencedContainer = "container:ChewbeApp.xcodeproj">
+               BuildableName = "SydneyAppTests.xctest"
+               BlueprintName = "SydneyAppTests"
+               ReferencedContainer = "container:SydneyApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ChewbeApp.app"
-            BlueprintName = "ChewbeApp"
-            ReferencedContainer = "container:ChewbeApp.xcodeproj">
+            BuildableName = "SydneyApp.app"
+            BlueprintName = "SydneyApp"
+            ReferencedContainer = "container:SydneyApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ChewbeApp.app"
-            BlueprintName = "ChewbeApp"
-            ReferencedContainer = "container:ChewbeApp.xcodeproj">
+            BuildableName = "SydneyApp.app"
+            BlueprintName = "SydneyApp"
+            ReferencedContainer = "container:SydneyApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

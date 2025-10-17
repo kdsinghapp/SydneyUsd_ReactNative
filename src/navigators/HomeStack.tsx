@@ -1,7 +1,8 @@
  import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
  import ScreenNameEnum from '../routes/screenName.enum';
-import Dashboard from '../screen/BottomTab/Dashboard/Dashboard';
+import Dashboard from '../screen/BottomTab/DashBoard/Dashboard';
+ 
  
  type HomeStackParamList = {
   [ScreenNameEnum.DashBoardScreen]: undefined;

@@ -13,7 +13,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import imageIndex from '../../../assets/imageIndex';
 import StatusBarComponent from '../../../compoent/StatusBarCompoent';
- import { styles } from './style';
+import { styles } from './style';
 import CustomButton from '../../../compoent/CustomButton';
 import { color } from '../../../constant';
 import SlideButton from '../../../compoent/SlideRightButton/SlideRightButton';
@@ -49,7 +49,7 @@ const slides: Slide[] = [
   // },
 ];
 
- 
+
 const OnboardingScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const flatListRef = useRef<FlatList>(null);
@@ -61,43 +61,44 @@ const OnboardingScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   };
 
   const handleNextPress = () => {
-   
-       navigation.navigate(ScreenNameEnum.Login);
-    
+
+    navigation.navigate(ScreenNameEnum.Login);
+
   };
 
   const handleSkip = () => {
-  navigation.navigate(ScreenNameEnum.Login);
+    navigation.navigate(ScreenNameEnum.Login);
   };
 
   const renderSlide = ({ item }: { item: Slide }) => (
-    <View style={[styles.slide,  ]}>
-         <ImageBackground source={item.img} style={styles.image} >
-<Image source={imageIndex.cosrimge}
+    <View style={[styles.slide,]}>
+      <ImageBackground source={item.img} style={styles.image} >
+        <Image source={imageIndex.cosrimge}
 
-style={{
-  height:360,
-  width:286,
-  resizeMode:"contain",
-  alignSelf:"center",
- }}  
-/>
-          </ImageBackground>
-       {/* Dots */}
-       <View style={styles.dotsContainer}>
-        {slides.map((_, index) => {
+          style={{
+            height: 360,
+            width: 286,
+            resizeMode: "contain",
+            alignSelf: "center",
+          }}
+        />
+      </ImageBackground>
+      {/* Dots */}
+      <View style={styles.dotsContainer}>
+        {/* {slides.map((_, index) => {
           const isActive = currentIndex === index;
           return (
             <View
               key={index}
               style={[
                 styles.dot,
-                { backgroundColor: isActive ? '#00FF85' : "#76889A"  ,
-                    width:isActive?  15 :9,
-                    height: isActive?  5 :9,
-                    justifyContent:"center" ,
-                    marginHorizontal: 5,
-                    borderRadius: isActive ? 10 :10,
+                {
+                  backgroundColor: isActive ? '#00FF85' : "#76889A",
+                  width: isActive ? 15 : 9,
+                  height: isActive ? 5 : 9,
+                  justifyContent: "center",
+                  marginHorizontal: 5,
+                  borderRadius: isActive ? 10 : 10,
 
 
 
@@ -105,12 +106,12 @@ style={{
               ]}
             />
           );
-        })}
+        })} */}
       </View>
       <Text style={styles.title}>{item.title}</Text>
-     <Text style={styles.description}>
-  Your trusted bridge between AUD and stablecoins {"\n"}secure, simple, and smart.
-</Text>
+      <Text style={styles.description}>
+        Your trusted bridge between AUD and stablecoins {"\n"}secure, simple, and smart.
+      </Text>
 
     </View>
   );
@@ -121,10 +122,10 @@ style={{
 
       {/* Skip Button */}
       <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-        <Text style={styles.skipText}>Skip</Text>
+        {/* <Text style={styles.skipText}>Skip</Text> */}
       </TouchableOpacity>
 
-       <Animated.FlatList
+      <Animated.FlatList
         data={slides}
         horizontal
         pagingEnabled
@@ -138,19 +139,19 @@ style={{
         )}
         scrollEventThrottle={16}
       />
-      
-  <View style={{
-     alignItems:"center",
-    justifyContent:"center",
-     alignSelf:"center",
-     marginBottom:50 ,
-     marginHorizontal:80
-  }}>
-            <CustomButton title={"Continue"} onPress={handleNextPress} />
-  
-            </View>
-    
-     
+
+      <View style={{
+        alignItems: "center",
+        justifyContent: "center",
+        alignSelf: "center",
+        marginBottom: 50,
+        marginHorizontal: 80
+      }}>
+        <CustomButton title={"Continue"} onPress={handleNextPress} />
+
+      </View>
+
+
 
     </View>
   );

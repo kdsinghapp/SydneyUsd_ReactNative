@@ -29,9 +29,14 @@ import CurrencySelector from "../screen/Profile/CurrencySelector";
 import NotificationsSetting from "../screen/Profile/NotificationsSetting/NotificationsSetting";
 import HelpSupport from "../screen/Profile/HelpSupport/HelpSupport";
 import FaceRecognition from "../screen/auth/FaceRecognition/FaceRecognition ";
-import BuyNow from "../screen/BottomTab/Dashboard/BuyNow";
-import Buy from "../screen/BottomTab/Dashboard/Buy";
-import SwapScreen from "../screen/BottomTab/swap/Swap";
+import Buy from "../screen/BottomTab/DashBoard/Buy";
+import BuyNow from "../screen/BottomTab/DashBoard/BuyNow";
+import SwapScreen from "../screen/BottomTab/Swap/Swap";
+import ContactUS from "../screen/Profile/HelpSupport/ContactUS";
+import TokenDetailScreen from "../screen/BottomTab/DashBoard/CointDetail";
+// import BuyNow from "../screen/BottomTab/Dashboard/BuyNow";
+// import Buy from "../screen/BottomTab/Dashboard/Buy";
+// import SwapScreen from "../screen/BottomTab/swap/Swap";
 
 
  const _routes: any = {
@@ -89,6 +94,14 @@ import SwapScreen from "../screen/BottomTab/swap/Swap";
     {
       name: ScreenNameEnum.Help,
       Component: HelpScreen,
+    },
+     {
+      name: ScreenNameEnum.cointDetail,
+      Component: TokenDetailScreen,
+    },
+     {
+      name: ScreenNameEnum.ContactUS,
+      Component: ContactUS,
     },
        {
       name: ScreenNameEnum.TabNavigator,

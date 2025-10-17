@@ -17,8 +17,8 @@ import StatusBarComponent from '../../../compoent/StatusBarCompoent';
 import CustomButton from '../../../compoent/CustomButton';
 import CustomInput from '../../../compoent/CustomInput';
 import Icon from '../../../compoent/Icon';
-  import { styles } from './style';
- import { useCreateNewPassword } from './usePersonalInfo';
+import { styles } from './style';
+import { useCreateNewPassword } from './usePersonalInfo';
 import CustomHeader from '../../../compoent/CustomHeader';
 import StepProgressBar from '../../../compoent/StepProgressBar';
 
@@ -34,7 +34,7 @@ export default function PersonalInfo() {
     handleSetPassword,
     navigation
   } = useCreateNewPassword()
- const [shipmentType, setShipmentType] = useState<string>("");
+  const [shipmentType, setShipmentType] = useState<string>("");
 
   const shipmentOptions = [
     { label: "Standard", value: "standard" },
@@ -42,50 +42,50 @@ export default function PersonalInfo() {
     { label: "Same Day", value: "same_day" },
   ];
   return (
-    
-      <SafeAreaView style={styles.container}>
-        <StatusBarComponent />
-        {isLoading && <Loading />}
-        <ScrollView showsVerticalScrollIndicator={false}>
-                     <CustomHeader label="Personal Info" />
 
-                <StepProgressBar step={1} totalSteps={5} />
-<View style={{
-  marginHorizontal:15
-}}>
+    <SafeAreaView style={styles.container}>
+      <StatusBarComponent />
+      {isLoading && <Loading />}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <CustomHeader label="Personal Info" />
+
+        <StepProgressBar step={1} totalSteps={5} />
+        <View style={{
+          marginHorizontal: 15
+        }}>
 
           <View style={styles.formContainer}>
             <CustomInput
               placeholder={"First name "}
-               
-               
+
+
             />
             {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
 
             <CustomInput
               placeholder={"Preferred first name"}
-              
-             />
-             <CustomInput
+
+            />
+            <CustomInput
               placeholder={"Middle name"}
-         
-             />
-             <CustomInput
+
+            />
+            <CustomInput
               placeholder={"Last name"}
-             
-             /><CustomInput
+
+            /><CustomInput
               placeholder={"Date of birth "}
-             
-             />
-              
-           </View>
-           </View>
-        </ScrollView>
-<View style={{
-  marginHorizontal:15
-}}>
+
+            />
+
+          </View>
+        </View>
+      </ScrollView>
+      <View style={{
+        marginHorizontal: 15
+      }}>
         <CustomButton title={"Next"} onPress={handleSetPassword} />
       </View>
-      </SafeAreaView>
-   );
+    </SafeAreaView>
+  );
 }
