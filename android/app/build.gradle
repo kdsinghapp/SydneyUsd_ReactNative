@@ -117,8 +117,7 @@ dependencies {
  
 
   
-  implementation project(':react-native-worklets-core')
-
+  
      // Kotlin coroutines for async operations
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
     if (hermesEnabled.toBoolean()) {
